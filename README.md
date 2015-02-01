@@ -9,6 +9,13 @@ This is your new Play application
 ```
  - ./activator run to bring up the server on port 9000
 
+Alternatively you may use sbt:
+
+```bash 
+  sbt compile
+  sbt run
+```
+
 ## production deployment
 
  - TBD

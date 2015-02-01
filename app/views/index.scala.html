@@ -1,7 +1,30 @@
-@(message: String)
+@(someDocuments: java.util.List[io.prismic.Document])
 
-@main("Welcome to Play") {
+@main("All documents") {
 
-    @play20.welcome(message, style = "Java")
+    <form action="@routes.Application.search(null)" method="GET">
+        <input type="text" name="q" value="">
+        <input type="submit" value="Search">
+    </form>
+
+    <hr>
+
+    <h2>
+    @someDocuments.size() match {
+        case 0 => { No documents found }
+        case 1 => { One document found }
+        case n => { @n documents found }
+    }
+    </h2>
+
+    <ul>
+    @for(document <- someDocuments) {
+        <li>
+            <a href="@routes.Application.detail(document.getId(), document.getSlug())">
+            @document.getSlug()
+            </a>
+        </li>
+    }
+    </ul>
 
 }
